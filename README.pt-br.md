@@ -173,7 +173,7 @@ db = wh.settings(
 
 | Parâmetro | Descrição |
 | --- | --- |
-| `apikey` | Para acessar suas configurações, se você não tiver passado ao [iniciar o módulo](https://github.com/F4Jonatas/whvn#initialize-the-module), isto é necessário. |
+| `apikey` | Para acessar suas configurações, se você não tiver passado ao [iniciar o módulo](https://github.com/F4Jonatas/whvn/blob/main/README.pt-br.md#inicialize-o-m%C3%B3dulo), isto é necessário. |
 </details>
 
 ---
