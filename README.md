@@ -172,7 +172,7 @@ db = wh.settings(
 
 | Parameter | Description |
 | --- | --- |
-| `apikey` | To access your settings, if you have not passed when starting the module, this is required. |
+| `apikey` | To access your settings, if you have not passed when [starting the module](https://github.com/F4Jonatas/whvn#initialize-the-module), this is required. |
 </details>
 
 ---
@@ -214,7 +214,7 @@ file = support.setwall(
 ---
 
 ## Donation
-[![buymeacoffee](https://media0.giphy.com/media/o7RZbs4KAA6tvM4H6j/200w.webp)](https://www.buymeacoffee.com/jonatasp3)
+[![buymeacoffee](https://raw.githubusercontent.com/F4Jonatas/whvn/main/img/donate.webp)](https://www.buymeacoffee.com/jonatasp3)
 <br>
 If you enjoyed my little work, be sure to show it off.<br>
 _"Donation is an emotional act, recognition."_
