@@ -222,9 +222,9 @@ class valid:
 
 		if isinstance( value, int ):
 			if value < 2:
-				value = '00' + str( value )
+				value = str( value ) + '00'
 			elif value < 12:
-				value = '0' + str( value )
+				value = str( value ) + '0'
 			else:
 				value = str( value )
 
@@ -244,9 +244,9 @@ class valid:
 
 		if isinstance( value, int ):
 			if value < 2:
-				value = '00' + str( value )
+				value = str( value ) + '00'
 			elif value < 12:
-				value = '0' + str( value )
+				value = str( value ) + '0'
 			else:
 				value = str( value )
 
