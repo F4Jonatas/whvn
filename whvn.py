@@ -1,5 +1,5 @@
 ###
-  # version: 1.3.3
+  # version: 1.3.4
 ###
 
 
@@ -278,14 +278,13 @@ class valid:
 		if value == None:
 			return None
 
-		value = value.lower()
-
+		value = re.sub( r'[ ]+', '', value.lower() )
 		if value in self.__ratios:
 			return self.__ratios[ value ]
 
 		else:
 			# wallhaven does not support "portrait/landscapea" ratios with other ratios.
-			value = re.sub( r'(allportrait|allwide|landscapea),?', '',     value )
+			value = re.sub( r'(allportrait|allwide|landscapea),?', '',    value )
 			value = re.sub( r'wide\b'     , self.__ratios[ 'wide'      ], value )
 			value = re.sub( r'ultrawide\b', self.__ratios[ 'ultrawide' ], value )
 			value = re.sub( r'portrait\b' , self.__ratios[ 'portrait'  ], value )
@@ -316,7 +315,7 @@ class valid:
 		if value == None:
 			return None
 
-		value = value.lower()
+		value = re.sub( r'[ ]+', '', value.lower() )
 
 		if self.__res.get( value ):
 			return self.__res[ value ]
@@ -331,7 +330,6 @@ class valid:
 
 			for var in array:
 				if not var in self.__reslist:
-					print( var )
 					value = re.sub( var, '', value )
 
 
@@ -406,9 +404,6 @@ class valid:
 
 	@classmethod # string
 	def colors( self, value ):
-		if value == None:
-			return None
-
 		return self.seed( value )
 
 
@@ -426,36 +421,40 @@ class valid:
 		search = ''
 
 		if id:
-			search += 'id:' + ( str( id ) if isinstance( id, int ) else id )
+			id = str( id )
+			if len( id ):
+				return 'id:' + id
 
 
-		elif like:
-			search += 'like:' + like
+		elif like and len( like ):
+			return 'like:' + like
 
 
-		elif value or exclude:
+		if value:
 			if isinstance( value, list ) or isinstance( value, tuple ):
 				for tag in value:
-					search += ( ' ' if value.index( tag ) > 0 else '' ) + tag
+					if len( tag ):
+						search += ( ' ' if value.index( tag ) > 0 else '' ) + tag
 
 			else:
 				search += value
 
 
-			if isinstance( exclude, list ) or isinstance( exclude, tuple ):
-				for tag in exclude:
-					search += ( ' ' if exclude.index( tag ) > 0 else '' ) + '-' + tag
+		if isinstance( exclude, list ) or isinstance( exclude, tuple ):
+			for tag in exclude:
+				if len( tag ):
+					search += ( ' ' if ( value or exclude.index( tag ) > 0 ) else '' ) + '-' + tag
 
-			else:
-				search += ( ' -' + exclude if exclude else '' )
+		else:
+			search += ( ' -' + exclude if exclude else '' )
 
 
 		if user:
-			search += ' @' + user
+			search += ( ' ' if len( search ) else '' ) +'@'+ user
 
 
 		if type and re.search( r'(png|jpe?g)', type ):
-			search += ' type:' + type
+			search += ( ' ' if len( search ) else '' ) +'type:'+ type
 
 		return search
 
